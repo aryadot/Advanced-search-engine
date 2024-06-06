@@ -29,8 +29,8 @@ This project is a comprehensive data engineering pipeline for extracting, proces
 - **Containerization:** Deploy the solution using Docker and Kubernetes for scalability and portability.
 
 ## Architecture
-![Architecture Diagram](![dataimg](https://github.com/aryadot/data/assets/63002908/f6e4f13a-579a-44e8-9ee6-b3bbef48f998)
-)
+![Architecture Diagram](./images/architecture_diagram.png)
+
 
 ## Technologies
 - **Programming Languages:** Python
