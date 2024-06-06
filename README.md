@@ -1,129 +1,75 @@
-# Real-Estate Data Engineering Pipeline
+# Warehouse and Retail Sales Data Engineering Project
 
-## Overview
-This project is a comprehensive data engineering pipeline for extracting, processing, and analyzing real-estate data from online sources. It integrates web scraping, data storage, processing, machine learning, and visualization using a variety of modern data engineering tools and technologies.
+This project demonstrates an end-to-end data engineering pipeline that extracts data from a CSV file, transforms it, and loads it into a PostgreSQL database using a star schema design. The processed data is then visualized using Metabase.
 
-## Table of Contents
-- [Overview](#overview)
-- [Features](#features)
-- [Architecture](#architecture)
-- [Technologies](#technologies)
-- [Setup and Installation](#setup-and-installation)
-- [Usage](#usage)
-- [Pipeline Components](#pipeline-components)
-  - [Data Extraction](#data-extraction)
-  - [Data Storage and Processing](#data-storage-and-processing)
-  - [Data Transformation](#data-transformation)
-  - [Data Loading and Analytics](#data-loading-and-analytics)
-  - [Pipeline Orchestration and Management](#pipeline-orchestration-and-management)
-- [Contributing](#contributing)
-- [License](#license)
+## Project Structure
 
-## Features
-- **Web Scraping:** Extract real-estate data from online portals.
-- **Data Storage:** Store raw and processed data in a scalable, cloud-agnostic storage system.
-- **Data Processing:** Perform data transformations and ensure data consistency with Delta Lake.
-- **Machine Learning:** Integrate Jupyter Notebooks for data science and machine learning tasks.
-- **Data Visualization:** Create dashboards and visualizations using Apache Superset.
-- **Pipeline Orchestration:** Manage and orchestrate the entire pipeline with Dagster.
-- **Containerization:** Deploy the solution using Docker and Kubernetes for scalability and portability.
+<img src="./assets/architecture.png" alt="Architecture Diagram" width="500">
 
-## Architecture
-<img src="./dataimg.png" alt="Architecture Diagram" width="500">
+## Tech Stack
 
-
-
-## Technologies
-- **Programming Languages:** Python
-- **Web Scraping:** BeautifulSoup, Scrapy
-- **Data Storage:** S3, MinIO, Delta Lake
-- **Data Processing:** Apache Spark, Delta-rs
-- **Machine Learning and Data Science:** Jupyter Notebooks, Papermill
-- **Data Warehouse:** Apache Druid
-- **Data Visualization:** Apache Superset
-- **Pipeline Orchestration:** Dagster
-- **Containerization and Orchestration:** Docker, Kubernetes
-
-## Setup and Installation
-
-### Prerequisites
 - Docker
-- Kubernetes (e.g., Minikube for local development)
-- Python 3.8 or higher
-- [Poetry](https://python-poetry.org/)
+- Python (Pandas, SQLAlchemy, logging)
+- PostgreSQL
+- Metabase
 
-### Installation
+## Setup
 
-1. **Clone the Repository:**
-    ```sh
-    git clone https://github.com/yourusername/real-estate-data-pipeline.git
-    cd real-estate-data-pipeline
-    ```
+1. Clone the repository:
+   ```
+   git clone https://github.com/Dorianteffo/etl_pipeline_docker_metabase.git
+   ```
 
-2. **Install Dependencies:**
-    ```sh
-    poetry install
-    ```
+2. Navigate to the project directory:
+   ```
+   cd etl_pipeline_docker_metabase
+   ```
 
-3. **Set Up Environment Variables:**
-    Create a `.env` file in the project root and add your configuration details:
-    ```env
-    S3_ENDPOINT_URL=http://localhost:9000
-    AWS_ACCESS_KEY_ID=your_access_key
-    AWS_SECRET_ACCESS_KEY=your_secret_key
-    DRUID_HOST=localhost
-    ```
+3. Start the Docker containers:
+   ```
+   docker-compose up --build -d
+   ```
 
-4. **Start Docker Services:**
-    ```sh
-    docker-compose up -d
-    ```
+4. Connect to the PostgreSQL database:
+   ```
+   docker exec -ti warehouse psql postgres://dorian:1412@localhost:5432/retail_sales
+   ```
 
-5. **Deploy to Kubernetes:**
-    ```sh
-    kubectl apply -f k8s/
-    ```
+5. Create the necessary schemas by running the SQL script in the `sql` directory:
+   ```sql
+   CREATE SCHEMA landing_area;
+   CREATE SCHEMA staging_area;
+   ```
 
-## Usage
+6. Run the Python scripts to load data into the landing area and transform it into the staging area:
+   ```
+   python pipeline/to_landing.py
+   python pipeline/to_staging.py
+   ```
 
-### Running the Pipeline
-1. **Start the Dagster UI:**
-    ```sh
-    dagster dev
-    ```
-    Access the Dagster UI at `http://localhost:3000`.
+7. Access the Metabase dashboard at `http://localhost:3000`.
 
-2. **Run the Pipeline:**
-    In the Dagster UI, trigger the `real_estate_pipeline` to start the ETL process.
+## Data Pipeline
 
-### Accessing Data and Visualizations
-- **Superset:** Access Superset at `http://localhost:8088` to view dashboards and visualizations.
-- **Druid:** Access Druid console at `http://localhost:8888` for data queries and management.
+1. **Data Loading**: The `pipeline/to_landing.py` script reads the CSV file from the `dataset` directory and loads it into the `landing_area` schema of the PostgreSQL database using SQLAlchemy and Pandas.
 
-## Pipeline Components
+2. **Data Transformation**: The `pipeline/to_staging.py` script reads the data from the `landing_area` schema, applies data cleaning and transformation logic, and builds fact and dimension tables based on the star schema design.
 
-### Data Extraction
-- **Tools:** BeautifulSoup, Scrapy
-- **Description:** Scripts to scrape real-estate data from online portals.
+3. **Data Loading to Staging**: The transformed tables are loaded into the `staging_area` schema for visualization purposes.
 
-### Data Storage and Processing
-- **Tools:** MinIO, Delta Lake, Apache Spark
-- **Description:** Store raw data in S3-compatible storage and use Delta Lake for data processing.
+4. **Data Visualization**: Metabase is used to connect to the PostgreSQL database and create a dashboard to visualize the data stored in the `staging_area` schema.
 
-### Data Transformation
-- **Tools:** Apache Spark, Delta-rs
-- **Description:** Transform data to ensure consistency and prepare for analytics.
+## Dataset
 
-### Data Loading and Analytics
-- **Tools:** Apache Druid, Apache Superset
-- **Description:** Load processed data into Druid and create visualizations in Superset.
+The dataset used in this project is sourced from https://catalog.data.gov/dataset/warehouse-and-retail-sales.
 
-### Pipeline Orchestration and Management
-- **Tools:** Dagster, Docker, Kubernetes
-- **Description:** Orchestrate the pipeline using Dagster and deploy with Docker and Kubernetes.
+## Dashboard
 
-## Contributing
-Contributions are welcome! Please submit a pull request or open an issue to discuss your ideas.
+The Metabase dashboard can be accessed at `http://localhost:3000` after following the setup instructions.
+<img src="./assets/metabase_dashboard_1.png" alt="Diagram" width="500">
+<img src="./assets/metabase_dashboard_2.png" alt="Diagram" width="500">
+## Acknowledgments
 
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+- Dataset source: https://catalog.data.gov/dataset/warehouse-and-retail-sales
+
+Feel free to explore the code and adapt it to your own data engineering projects!
