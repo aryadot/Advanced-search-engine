@@ -29,7 +29,7 @@ This project is a comprehensive data engineering pipeline for extracting, proces
 - **Containerization:** Deploy the solution using Docker and Kubernetes for scalability and portability.
 
 ## Architecture
-![Architecture Diagram](./images/architecture_diagram.png)
+![Architecture Diagram](./dataimg.png)
 
 
 ## Technologies
