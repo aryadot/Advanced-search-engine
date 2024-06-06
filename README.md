@@ -70,10 +70,6 @@ The Metabase dashboard can be accessed at `http://localhost:3000` after followin
 ![dashboard2.PNG](assets/metabase_dashboard_2.PNG)
 
 
-## Acknowledgments
-
-- Dataset source: https://catalog.data.gov/dataset/warehouse-and-retail-sales
-
 Feel free to explore the code and adapt it to your own data engineering projects!
 
 
