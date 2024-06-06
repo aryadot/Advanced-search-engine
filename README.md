@@ -21,8 +21,6 @@ Here are the commands to set up the environment:
 * Go to localhost:3000 to open Metabase.
 * `make down`: Stop the containers.
 
-## Date model
-![data_model.png](assets/data_model.png)
 
 ## Dashboard
 ![dashboard1.PNG](assets/metabase_dashboard_1.PNG)
