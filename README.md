@@ -78,5 +78,3 @@ The **Advanced Search Engine** is a powerful search system that supports complex
 This project is licensed under the MIT License. See the LICENSE file for more information.
 
 ---
-
-This README file covers all essential sections like installation, features, technologies used, and more. Let me know if you'd like any adjustments!
