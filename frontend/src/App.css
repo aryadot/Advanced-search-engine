@@ -1,0 +1,170 @@
+/* App.css */
+
+/* Base light mode */
+body {
+  background-color: #f6f8fa;
+  color: #333;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Global dark mode override */
+.dark body {
+  background-color: #121212;
+  color: #eee;
+}
+
+
+.App {
+  text-align: center;
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
+}
+
+input, select, button {
+  padding: 10px 14px;
+  margin: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+select {
+  background-color: #f8f8f8;
+}
+
+.results {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  text-align: left;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 1.3rem;
+  color: #333;
+}
+
+.card p {
+  margin: 0.5rem 0;
+}
+
+.card a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}
+/* Toggle Button Styles */
+.toggle-buttons {
+  margin-top: 1rem;
+}
+
+.toggle-buttons button {
+  margin: 0 0.5rem;
+  padding: 10px 16px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #e9ecef;
+  color: #333;
+}
+
+.toggle-buttons button.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.section-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+/* DARK MODE STYLES */
+.dark {
+  background-color: #121212;
+  color: #eee;
+}
+
+.dark input,
+.dark select,
+.dark button {
+  background-color: #1f1f1f;
+  color: #fff;
+  border-color: #444;
+}
+
+.dark .card {
+  background-color: #1e1e1e;
+  color: #ddd;
+}
+
+/* CARD BADGES */
+.badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 6px;
+  margin-right: 8px;
+  margin-top: 0.5rem;
+  background-color: #e2e6ea;
+  color: #333;
+}
+
+.auth-badge {
+  background-color: #f2f2f2;
+  color: #007bff;
+}
+
+.category-badge {
+  background-color: #ffe58f;
+  color: #8c6d1f;
+}
+
+.dark .badge {
+  background-color: #2a2a2a;
+  color: #ccc;
+}
+
+.dark .auth-badge {
+  background-color: #333;
+  color: #61dafb;
+}
+
+.dark .category-badge {
+  background-color: #5c3d00;
+  color: #ffeaa7;
+}
