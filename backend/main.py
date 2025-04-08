@@ -14,13 +14,11 @@ app.add_middleware(
 )
 
 # ✅ Connect to your PostgreSQL database
-conn = psycopg2.connect(
-    dbname="api_search_engine",
-    user="postgres",
-    password="your_password",  # ← replace with your actual password
-    host="localhost",
-    port="5432"
-)
+import os
+
+DATABASE_URL = os.environ.get("DATABASE_URL")
+conn = psycopg2.connect(DATABASE_URL)
+
 cur = conn.cursor()
 
 # ✅ /search endpoint with full-text search + auth filter + ts_rank ordering
