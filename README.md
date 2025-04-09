@@ -72,14 +72,7 @@ npm start
 
 ## 🌍 Deployment
 
-### Frontend (Netlify)
-1. Push `frontend/` folder to a GitHub repo
-2. Go to [Netlify](https://www.netlify.com/)
-3. Select "Import from GitHub"
-4. Set build command: `npm run build`
-5. Set publish directory: `build`
-6. Deploy 🚀
-
+The website is deployed using Netlify. You can access it at: https://advanced-search-engine.vercel.app
 ### Backend (Optional)
 Use [Render](https://render.com), [Railway](https://railway.app), or [Fly.io](https://fly.io) to deploy FastAPI + PostgreSQL.
 
