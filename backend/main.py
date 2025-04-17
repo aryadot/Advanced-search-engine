@@ -23,6 +23,11 @@ conn = psycopg2.connect(DATABASE_URL)
 
 cur = conn.cursor()
 
+# ✅ Home route to confirm deployment
+@app.get("/")
+def home():
+    return {"message": "API Search Engine backend is running 🎉"}
+
 # ✅ /search endpoint with full-text search + auth filter + ts_rank ordering
 @app.get("/search")
 def search_apis(
