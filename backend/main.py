@@ -1,6 +1,8 @@
 from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 import psycopg2
+from dotenv import load_dotenv
+load_dotenv()
 
 app = FastAPI()
 
